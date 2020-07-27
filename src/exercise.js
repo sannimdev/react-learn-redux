@@ -59,7 +59,7 @@ function reducer(state = initialState, action) {
         list: state.list.concat(action.item), //불변성 유지해야 함에 유의!!!!
       };
     default:
-      //처리하지 못한 액션의 경우
+      //처리하지 못한 액션의 경우 (리덕스에서는 예외를 던지는 것이 아니라 기본 상태를 반환해야 함)
       return state;
   }
 }
