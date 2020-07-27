@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 
-function TodoItem({ todo, onToggle }) {
+//불필요한 시점에 렌더링되지 않도록 React.memo(컴포넌트) 사용
+const TodoItem = React.memo(function TodoItem({ todo, onToggle }) {
   return (
     <li
       style={{
@@ -11,9 +12,9 @@ function TodoItem({ todo, onToggle }) {
       {todo.text}
     </li>
   );
-}
+});
 
-function TodoList({ todos, onToggle }) {
+const TodoList = React.memo(function TodoList({ todos, onToggle }) {
   return (
     <ul>
       {todos.map((todo) => (
@@ -21,7 +22,7 @@ function TodoList({ todos, onToggle }) {
       ))}
     </ul>
   );
-}
+});
 
 function Todos({ todos, onCreate, onToggle }) {
   //리덕스를 사용한다고 해서 모든 상태를 리덕스로만 관리할 필요는 없다.
@@ -43,4 +44,4 @@ function Todos({ todos, onCreate, onToggle }) {
   );
 }
 
-export default Todos;
+export default React.memo(Todos);
